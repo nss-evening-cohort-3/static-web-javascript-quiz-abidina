@@ -47,5 +47,3 @@ function validateInput() {
 
 submitButton.addEventListener("click", validateInput);
 submitButton.addEventListener("click", buildTree);
-
-//something

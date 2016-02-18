@@ -13,12 +13,12 @@ function buildTree() {
     height: treeHeight,
     character: n
   };
-
+// SPACES
   for (var i = 0; i < treeObject.height; i++) {
     for (var j = 0; j < treeObject.height - i -1; j++) {
       line += " ";
     }
-
+// SYMBOLS
     for (var j = 0; j < 2 * i + 1; j++) {
       line += treeObject["character"];
     } 

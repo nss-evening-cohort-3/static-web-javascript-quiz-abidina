@@ -1,41 +1,49 @@
 var submitButton = document.getElementById("submit");
+var treeElement = document.getElementById("actualTree");
+var line = "";
 
-// Create a tree function that should build a pine tree out of a character in the browser console. 
-//It accepts a single object as an argument. The object should have two key/value pairs.
+// TREE FUNCTION IN CONSOLE LOG
 
-function buildTree(treeObject) {
+function buildTree() {
   var treeHeight = document.getElementById("input1").value;
   var treeChar = document.getElementById("input2").value;
+  var n = treeChar.toString();
 
   var treeObject = {
-    treeHeight: treeHeight,
-    character: treeChar
+    height: treeHeight,
+    character: n
   };
 
-//   for (var i = 0; i <= treeObject["treeHeight"]; i++) {
-//     treeObject["character"] += " ";
-//   }
-//   console.log("tree", buildTree());
-// }
+  for (var i = 0; i < treeObject.height; i++) {
+    for (var j = 0; j < treeObject.height - i -1; j++) {
+      line += " ";
+    }
+
+    for (var j = 0; j < 2 * i + 1; j++) {
+      line += treeObject["character"];
+    } 
+  line += "\n";
+  }
+  console.log(line);
+}
 
 
-// Once the user enters in a number, and a character, the user can either then just press the enter key 
-//(as long as the cursor is in one of the input fields), or click a button that is labeled "Grow your tree" 
-//and the tree should be shown in the console.
 
-submitButton.addEventListener("click", buildTree);
+// CLICK EVENTS/BUTTONS
+
 document.onkeydown = function() {
   if(window.event.keyCode == 13){
     buildTree();
   }
 };
 
-// If either of the input fields does not have a value in it when the user presses the enter key, or presses the button, 
-//then display an alert stating that both fields must have a value.
 function validateInput() {
-  if (treeHeight == "" || treeChar == "") {
+  if (document.getElementById("input1").value === "") {
     alert("Both fields must have a value.");
-    return false;
+  } else if (document.getElementById("input2").value === "") {
+      alert("Both fields must have a value.");
   }
 }
-// Grow your tree
+
+submitButton.addEventListener("click", validateInput);
+submitButton.addEventListener("click", buildTree);

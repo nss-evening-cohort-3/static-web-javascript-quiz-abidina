@@ -1,17 +1,17 @@
 var submitButton = document.getElementById("submit");
+var clearButton = document.getElementById("clear");
 var treeElement = document.getElementById("actualTree");
 var line = "";
 
 // TREE FUNCTION IN CONSOLE LOG
 
 function buildTree() {
-  var treeHeight = document.getElementById("input1").value;
-  var treeChar = document.getElementById("input2").value;
-  var n = treeChar.toString();
+  var treeHeight = document.getElementById("height").value;
+  var treeChar = document.getElementById("character").value;
 
   var treeObject = {
     height: treeHeight,
-    character: n
+    character: treeChar
   };
 // SPACES
   for (var i = 0; i < treeObject.height; i++) {
@@ -20,7 +20,7 @@ function buildTree() {
     }
 // SYMBOLS
     for (var j = 0; j < 2 * i + 1; j++) {
-      line += treeObject["character"];
+      line += treeObject.character;
     } 
   line += "\n";
   }
@@ -38,12 +38,17 @@ document.onkeydown = function() {
 };
 
 function validateInput() {
-  if (document.getElementById("input1").value === "") {
+  if (document.getElementById("height").value === "") {
     alert("Both fields must have a value.");
-  } else if (document.getElementById("input2").value === "") {
+  } else if (document.getElementById("character").value === "") {
       alert("Both fields must have a value.");
-  }
+  } else { buildTree();}
+}
+
+function clearInput() {
+  document.getElementById("height").value = "";
+  document.getElementById("character").value = "";
 }
 
 submitButton.addEventListener("click", validateInput);
-submitButton.addEventListener("click", buildTree);
+clearButton.addEventListener("click", clearInput);

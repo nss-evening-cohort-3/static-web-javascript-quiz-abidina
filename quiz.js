@@ -4,46 +4,50 @@ var treeElement = document.getElementById("actualTree");
 var line = "";
 
 // TREE FUNCTION IN CONSOLE LOG
+function validateInput() {
+  if ((document.getElementById("height").value === "") || (document.getElementById("character").value === "")) {
+      alert("Both fields must have a value.");
+  } else { 
+    getValues();
+  }
+}
 
-function buildTree() {
+function getValues() {
   var treeHeight = document.getElementById("height").value;
   var treeChar = document.getElementById("character").value;
 
   var treeObject = {
     height: treeHeight,
     character: treeChar
-  };
+  }
+  buildTree(treeObject);
+}
+
+function buildTree(ourTree) {
 // SPACES
-  for (var i = 0; i < treeObject.height; i++) {
-    for (var j = 0; j < treeObject.height - i -1; j++) {
+  for (var i = 0; i < ourTree.height; i++) {
+    for (var j = 0; j < ourTree.height - i -1; j++) {
       line += " ";
     }
 // SYMBOLS
     for (var j = 0; j < 2 * i + 1; j++) {
-      line += treeObject.character;
+      line += ourTree.character;
     } 
   line += "\n";
   }
   console.log(line);
+  line = "";
 }
 
 
 
-// CLICK EVENTS/BUTTONS
+// CLICK EVENTS
 
-document.onkeydown = function() {
+document.onkeydown = function(e) {
   if(window.event.keyCode == 13){
-    buildTree();
+    validateInput;
   }
 };
-
-function validateInput() {
-  if (document.getElementById("height").value === "") {
-    alert("Both fields must have a value.");
-  } else if (document.getElementById("character").value === "") {
-      alert("Both fields must have a value.");
-  } else { buildTree();}
-}
 
 function clearInput() {
   document.getElementById("height").value = "";
@@ -51,4 +55,5 @@ function clearInput() {
 }
 
 submitButton.addEventListener("click", validateInput);
+
 clearButton.addEventListener("click", clearInput);

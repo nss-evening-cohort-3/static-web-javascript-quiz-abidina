@@ -43,11 +43,12 @@ function buildTree(ourTree) {
 
 // CLICK EVENTS
 
-document.onkeydown = function(e) {
-  if(window.event.keyCode == 13){
-    validateInput;
+document.addEventListener("keydown", function(e) {
+  if(e.keyCode == 13){
+    validateInput();
   }
-};
+});
+
 
 function clearInput() {
   document.getElementById("height").value = "";
